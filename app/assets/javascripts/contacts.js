@@ -69,6 +69,17 @@ $(document).ready(function(){
     // Call a function to add our contact to 
     //  the page.
     addContact(newContact);
- 
+
   });
+
+  var loadContacts = function() {
+    var url = "/contacts.json";
+    $.ajax(url, {type: 'get'}).success(function(data){
+      for (var i in data) {
+        addContact(data[i]);
+      }
+    });
+  }
+
+  loadContacts();
 });
